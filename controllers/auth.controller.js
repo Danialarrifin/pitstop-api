@@ -1,11 +1,11 @@
-const UserModel = require('../models/user.model');
+const { User } = require('../models');
 const jwtConfig = require('../config/jwt.config');
 const cache = require('../utils/cache.util');
 const jwt = require('../utils/jwt.util');
 const bcrypt = require('bcrypt');
 
-exports.register = async (req, res) => {
-    const isExist = await UserModel.findOne({
+const register = async (req, res) => {
+    const isExist = await User.findOne({
         where:{
             email: req.body.email
         }
@@ -15,7 +15,7 @@ exports.register = async (req, res) => {
     }
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-    const user = await UserModel.create({
+    const user = await User.create({
         name: req.body.name,
         email: req.body.email,
         password: hashedPassword
@@ -23,8 +23,8 @@ exports.register = async (req, res) => {
     return res.json(user);
 }
 
-exports.login = async (req, res) => {
-    const user = await UserModel.findOne({
+const login = async (req, res) => {
+    const user = await User.findOne({
         where: {
             email: req.body.email
         }
@@ -32,7 +32,7 @@ exports.login = async (req, res) => {
     if (user) {
         const isMatched = await bcrypt.compare(req.body.password, user.password);
         if (isMatched) {
-            const token = await jwt.createToken({ id: user.id });
+            const token = await jwt.createToken({ id: user.id, email: user.email });
             return res.json({
                 access_token: token,
                 token_type: 'Bearer',
@@ -43,12 +43,12 @@ exports.login = async (req, res) => {
     return res.status(400).json({ message: 'Unauthorized' });
 }
 
-exports.getUser = async (req, res) => {
-    const user = await UserModel.findByPk(req.user.id);
+ const getUser = async (req, res) => {
+    const user = await User.findByPk(req.user.id);
     return res.json(user);
 }
 
-exports.logout = async (req, res) => { 
+const logout = async (req, res) => { 
     const token = req.token;
     const now = new Date();
     const expire = new Date(req.user.exp);
@@ -58,3 +58,10 @@ exports.logout = async (req, res) => {
 
     return res.json({ message: 'Logged out successfully' });
 }
+
+module.exports ={
+    register,
+    login,
+    getUser,
+    logout,
+};
