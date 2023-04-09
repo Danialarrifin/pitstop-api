@@ -7,11 +7,11 @@ const jwt = require('../utils/jwt.util');
 
 const register = async (req, res) => {
     const isExist = await User.findOne({
-        where:{
+        where: {
             email: req.body.email
         }
     })
-    if(isExist) {
+    if (isExist) {
         return res.status(400).json({ message: 'Email already exists.' });
     }
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -44,12 +44,12 @@ const login = async (req, res) => {
     return res.status(400).json({ message: 'Unauthorized' });
 }
 
- const getUserProfile = async (req, res) => {
+const getUserProfile = async (req, res) => {
     const user = await User.findByPk(req.user.id);
     return res.json(user);
 }
 
-const logout = async (req, res) => { 
+const logout = async (req, res) => {
     const token = req.token;
     const now = new Date();
     const expire = new Date(req.user.exp);
@@ -60,7 +60,7 @@ const logout = async (req, res) => {
     return res.json({ message: 'Logged out successfully' });
 }
 
-module.exports ={
+module.exports = {
     register,
     login,
     getUserProfile,
