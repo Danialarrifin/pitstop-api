@@ -9,6 +9,7 @@ module.exports = (schema) => (req, res, next) => {
         const result = schema.validate((req.method == 'GET' ? req.query : req.body), options);
         if (result.error) {
             const { details } = result.error;
+            console.log('details', details);
             const message = details.length ? details[0].message : 'Invalid payload.'
             return res.status(400).json({ message });
         }
