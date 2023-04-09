@@ -1,8 +1,9 @@
+const bcrypt = require('bcrypt');
+
 const { User } = require('../models');
 const jwtConfig = require('../config/jwt.config');
 const cache = require('../utils/cache.util');
 const jwt = require('../utils/jwt.util');
-const bcrypt = require('bcrypt');
 
 const register = async (req, res) => {
     const isExist = await User.findOne({
@@ -43,7 +44,7 @@ const login = async (req, res) => {
     return res.status(400).json({ message: 'Unauthorized' });
 }
 
- const getUser = async (req, res) => {
+ const getUserProfile = async (req, res) => {
     const user = await User.findByPk(req.user.id);
     return res.json(user);
 }
@@ -62,6 +63,6 @@ const logout = async (req, res) => {
 module.exports ={
     register,
     login,
-    getUser,
+    getUserProfile,
     logout,
 };
