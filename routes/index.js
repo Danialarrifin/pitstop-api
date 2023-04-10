@@ -4,6 +4,8 @@ const authRoutes = require("./auth.route");
 const userRoutes = require("./user.route");
 const vehicleRoutes = require("./vehicle.route");
 const addressRoutes = require("./address.route");
+const workshopRoutes = require("./workshop.route");
+
 
 
 const router = express.Router();
@@ -27,7 +29,10 @@ const defaultRoutes = [
         path: "/addresses",
         route: addressRoutes,
     },
-    
+    {
+        path: "/workshops",
+        route: workshopRoutes,
+    },
 ];
 
 defaultRoutes.forEach((route) => {

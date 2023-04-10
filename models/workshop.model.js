@@ -1,18 +1,18 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-const Vehicle = sequelize.define('vehicles', {
-    plate_num: {
+const Workshop = sequelize.define('workshops', {
+    name: {
         type: DataTypes.STRING
     },
-    model: {
+    contact_num: {
         type: DataTypes.STRING
     },
-    manufacturer: {
-        type: DataTypes.STRING
+    address_id: {
+        type: DataTypes.INTEGER
     },
-    image_path: {
-        type: DataTypes.STRING
+    road_assistance_enaled: {
+        type: DataTypes.BOOLEAN
     },
 }, {
     createdAt: 'created_at',
@@ -20,4 +20,4 @@ const Vehicle = sequelize.define('vehicles', {
     freezeTableName: true,
 });
 
-module.exports = Vehicle;
+module.exports = Workshop;
