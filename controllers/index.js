@@ -4,5 +4,7 @@ module.exports = {
     vehicleController: require('./vehicle.controller'),
     addressController: require('./address.controller'),
     workshopController: require('./workshop.controller'),
+    invoiceController: require('./invoice.controller'),
+
 
 };

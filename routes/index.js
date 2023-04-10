@@ -5,6 +5,8 @@ const userRoutes = require("./user.route");
 const vehicleRoutes = require("./vehicle.route");
 const addressRoutes = require("./address.route");
 const workshopRoutes = require("./workshop.route");
+const invoiceRoutes = require("./invoice.route");
+
 
 
 
@@ -32,6 +34,10 @@ const defaultRoutes = [
     {
         path: "/workshops",
         route: workshopRoutes,
+    },
+    {
+        path: "/invoices",
+        route: invoiceRoutes,
     },
 ];
 
