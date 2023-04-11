@@ -11,7 +11,7 @@ const Workshop = sequelize.define('workshops', {
     address_id: {
         type: DataTypes.INTEGER
     },
-    road_assistance_enaled: {
+    road_assistance_enabled: {
         type: DataTypes.BOOLEAN
     },
 }, {
