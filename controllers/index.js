@@ -5,6 +5,6 @@ module.exports = {
     addressController: require('./address.controller'),
     workshopController: require('./workshop.controller'),
     invoiceController: require('./invoice.controller'),
-
-
+    categoryController: require('./category.controller'),
+    
 };

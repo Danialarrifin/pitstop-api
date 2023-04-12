@@ -4,4 +4,5 @@ module.exports = {
     Address: require('./address.model'),
     Workshop: require('./workshop.model'),
     Invoice: require('./invoice.model'),
+    Category: require('./category.model'),
 };
