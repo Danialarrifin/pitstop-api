@@ -47,7 +47,7 @@ const updateAddress = async (req, res) => {
 };
 
 const deleteAddress = async (req, res) => {
-    const address = await Addresa.destroy({
+    const address = await Address.destroy({
         where: {
             id: req.query.addressId
         }
