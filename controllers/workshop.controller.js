@@ -31,7 +31,7 @@ const createWorkshop = async (req, res) => {
     // 2. create workshop
     const workshop = await Workshop.create({
         name: req.body.name,
-        contact_no: req.body.contact_no,
+        contact_num: req.body.contact_no,
         address_id: address.id,
     });
     return res.json(workshop);
@@ -66,24 +66,21 @@ const createWorkshop = async (req, res) => {
 
 const updateWorkshop = async (req, res) => {
     const workshop = await Workshop.update({
-        address: req.body.address,
-        state: req.body.state,
-        postcode: req.body.postcode,
-        city: req.body.city,
-        latitude: req.body.latitude,
-        longitude: req.body.longitude,
+        name: req.body.name,
+        contact_num: req.body.contact_no,
+        address_id: address.id,
     }, {
         where: {
-            id: req.query.addressId
+            id: req.query.workshopId
         }
     });
     return res.json({ message: 'workshop successfully updated' });
 };
 
-const deleteWorkshop = async (req, res) => {
-    const workshop = await workshop.destroy({
+const deleteWorkshop= async (req, res) => {
+    const workshop = await Workshop.destroy({
         where: {
-            id: req.query.addressId
+            id: req.query.workshopId
         }
     });
     return res.json({ message: 'workshop successfully deleted' });
