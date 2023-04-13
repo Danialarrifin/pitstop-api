@@ -30,7 +30,7 @@ const createCategory = async (req, res) => {
     //     // 2. create workshop
     const workshop = await Workshop.create({
         name: req.body.name,
-        contact_no: req.body.contact_no,
+        contact_num: req.body.contact_no,
         address_id: address.id,
     });
 
