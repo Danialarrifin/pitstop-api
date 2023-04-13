@@ -5,4 +5,5 @@ module.exports = {
     Workshop: require('./workshop.model'),
     Invoice: require('./invoice.model'),
     Category: require('./category.model'),
+    Item: require('./item.model'),
 };

@@ -6,5 +6,5 @@ module.exports = {
     workshopController: require('./workshop.controller'),
     invoiceController: require('./invoice.controller'),
     categoryController: require('./category.controller'),
-    
+    itemController: require('./item.controller'),
 };
