@@ -18,27 +18,10 @@ const getItem = async (req, res) => {
     return res.json(item);
 }
 const createItem = async (req, res) => {
-    //     // 1. create address
-    const address = await Address.create({
-        address: req.body.address,
-        state: req.body.state,
-        postcode: req.body.postcode,
-        city: req.body.city,
-        latitude: req.body.latitude,
-        longitude: req.body.longitude,
-    });
-    //     // 2. create workshop
-    const workshop = await Workshop.create({
-        name: req.body.name,
-        contact_num: req.body.contact_no,
-        address_id: address.id,
-    });
-
-    // 3. create item
     const item = await Item.create({
         name: req.body.name,
         price: req.body.price,
-        workshop_id: workshop.id,
+        workshop_id: req.body.workshop_id,
     });
     return res.json(item);
 };
@@ -47,7 +30,7 @@ const updateItem = async (req, res) => {
     const item = await Item.update({
         name: req.body.name,
         price: req.body.price,
-        workshop_id: workshop.id,
+        workshop_id: req.body.workshop.id,
     }, {
         where: {
             id: req.query.itemId
