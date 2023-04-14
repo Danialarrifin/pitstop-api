@@ -7,4 +7,6 @@ module.exports = {
     invoiceValidation: require('./invoice.validation'),
     categoryValidation: require('./category.validation'),
     itemValidation: require('./item.validation'),
+    serviceValidation: require('./service.validation'),
+
 };

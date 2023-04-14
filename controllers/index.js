@@ -7,4 +7,6 @@ module.exports = {
     invoiceController: require('./invoice.controller'),
     categoryController: require('./category.controller'),
     itemController: require('./item.controller'),
+    serviceController: require('./service.controller'),
+
 };

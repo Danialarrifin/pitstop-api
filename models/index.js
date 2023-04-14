@@ -6,4 +6,6 @@ module.exports = {
     Invoice: require('./invoice.model'),
     Category: require('./category.model'),
     Item: require('./item.model'),
+    Service: require('./service.model'),
+
 };

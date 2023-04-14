@@ -8,6 +8,8 @@ const workshopRoutes = require("./workshop.route");
 const invoiceRoutes = require("./invoice.route");
 const categoryRoutes = require("./category.route");
 const itemRoutes = require("./item.route");
+const serviceRoutes = require("./service.route");
+
 
 
 
@@ -50,6 +52,10 @@ const defaultRoutes = [
     {
         path: "/items",
         route: itemRoutes,
+    },
+    {
+        path: "/services",
+        route: serviceRoutes,
     },
 ];
 
