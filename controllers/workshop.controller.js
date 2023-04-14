@@ -18,7 +18,7 @@ const getWorkshop = async (req, res) => {
     return res.json(workshop);
 }
 const createWorkshop = async (req, res) => {
-    //     // 1. create address
+    // 1. create address
     const address = await Address.create({
         address: req.body.address,
         state: req.body.state,
@@ -31,7 +31,7 @@ const createWorkshop = async (req, res) => {
     // 2. create workshop
     const workshop = await Workshop.create({
         name: req.body.name,
-        contact_num: req.body.contact_no,
+        contact_num: req.body.contact_num,
         address_id: address.id,
     });
     return res.json(workshop);
