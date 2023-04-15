@@ -7,5 +7,7 @@ module.exports = {
     Category: require('./category.model'),
     Item: require('./item.model'),
     Service: require('./service.model'),
+    Review: require('./review.model'),
+
 
 };

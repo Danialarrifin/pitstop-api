@@ -9,6 +9,8 @@ const invoiceRoutes = require("./invoice.route");
 const categoryRoutes = require("./category.route");
 const itemRoutes = require("./item.route");
 const serviceRoutes = require("./service.route");
+const reviewRoutes = require("./review.route");
+
 
 
 
@@ -56,6 +58,10 @@ const defaultRoutes = [
     {
         path: "/services",
         route: serviceRoutes,
+    },
+    {
+        path: "/reviews",
+        route: reviewRoutes,
     },
 ];
 

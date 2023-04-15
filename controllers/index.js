@@ -8,5 +8,7 @@ module.exports = {
     categoryController: require('./category.controller'),
     itemController: require('./item.controller'),
     serviceController: require('./service.controller'),
+    reviewController: require('./review.controller'),
+
 
 };

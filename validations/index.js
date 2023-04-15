@@ -8,5 +8,7 @@ module.exports = {
     categoryValidation: require('./category.validation'),
     itemValidation: require('./item.validation'),
     serviceValidation: require('./service.validation'),
+    reviewValidation: require('./review.validation'),
+
 
 };
