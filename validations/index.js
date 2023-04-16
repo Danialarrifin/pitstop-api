@@ -9,6 +9,8 @@ module.exports = {
     itemValidation: require('./item.validation'),
     serviceValidation: require('./service.validation'),
     reviewValidation: require('./review.validation'),
+    time_slotValidation: require('./time_slot.validation'),
+
 
 
 };

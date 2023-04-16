@@ -8,6 +8,7 @@ module.exports = {
     Item: require('./item.model'),
     Service: require('./service.model'),
     Review: require('./review.model'),
+    Time_slot: require('./time_slot.model'),
 
 
 };

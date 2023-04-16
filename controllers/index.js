@@ -9,6 +9,8 @@ module.exports = {
     itemController: require('./item.controller'),
     serviceController: require('./service.controller'),
     reviewController: require('./review.controller'),
+    time_slotController: require('./time_slot.controller'),
+
 
 
 };
