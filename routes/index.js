@@ -11,6 +11,8 @@ const itemRoutes = require("./item.route");
 const serviceRoutes = require("./service.route");
 const reviewRoutes = require("./review.route");
 const time_slotRoutes = require("./time_slot.route");
+const appointmentRoutes = require("./appointment.route");
+
 
 
 
@@ -64,6 +66,10 @@ const defaultRoutes = [
     {
         path: "/time_slots",
         route: time_slotRoutes,
+    },
+    {
+        path: "/appointments",
+        route: appointmentRoutes,
     },
 ];
 

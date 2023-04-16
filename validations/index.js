@@ -10,6 +10,8 @@ module.exports = {
     serviceValidation: require('./service.validation'),
     reviewValidation: require('./review.validation'),
     time_slotValidation: require('./time_slot.validation'),
+    appointmentValidation: require('./appointment.validation'),
+
 
 
 

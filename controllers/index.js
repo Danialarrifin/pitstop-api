@@ -10,6 +10,8 @@ module.exports = {
     serviceController: require('./service.controller'),
     reviewController: require('./review.controller'),
     time_slotController: require('./time_slot.controller'),
+    appointmentController: require('./appointment.controller'),
+
 
 
 
