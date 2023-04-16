@@ -11,8 +11,6 @@ module.exports = {
     reviewController: require('./review.controller'),
     time_slotController: require('./time_slot.controller'),
     appointmentController: require('./appointment.controller'),
-
-
-
+    transactionController: require('./transaction.controller'),
 
 };

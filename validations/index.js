@@ -11,8 +11,7 @@ module.exports = {
     reviewValidation: require('./review.validation'),
     time_slotValidation: require('./time_slot.validation'),
     appointmentValidation: require('./appointment.validation'),
-
-
+    transactionValidation: require('./transaction.validation'),
 
 
 };

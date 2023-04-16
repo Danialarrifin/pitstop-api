@@ -10,7 +10,6 @@ module.exports = {
     Review: require('./review.model'),
     Time_slot: require('./time_slot.model'),
     Appointment: require('./appointment.model'),
-
-
+    Transaction: require('./transaction.model'),
 
 };
