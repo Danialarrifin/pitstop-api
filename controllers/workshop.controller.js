@@ -2,7 +2,7 @@ const { Workshop, Address } = require('../models');
 
 const getAllWorkshop = async (req, res) => {
     let workshops;
-    if(req.query.userId)
+    if(req.query.workshopId)
         workshops = await Workshop.findByPk(req.query.workshopId)
     else
         workshops = await Workshop.findAll({});
@@ -18,6 +18,7 @@ const getWorkshop = async (req, res) => {
     return res.json(workshop);
 }
 const createWorkshop = async (req, res) => {
+    
     // 1. create address
     const address = await Address.create({
         address: req.body.address,
