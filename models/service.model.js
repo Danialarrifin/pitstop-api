@@ -2,6 +2,9 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 const Service = sequelize.define('services', {
+    name: {
+        type: DataTypes.STRING
+    },
     image_path: {
         type: DataTypes.STRING
     },

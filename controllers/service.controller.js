@@ -20,6 +20,7 @@ const getService = async (req, res) => {
 const createService = async (req, res) => {
     // 3. create service
     const service = await Service.create({
+        name: req.body.name,
         image_path: req.body.image_path,
         price: req.body.price,
         description: req.body.description,
@@ -31,6 +32,7 @@ const createService = async (req, res) => {
 
 const updateService = async (req, res) => {
     const service = await Service.update({
+        name: req.body.name,
         image_path: req.body.image_path,
         price: req.body.price,
         description: req.body.description,

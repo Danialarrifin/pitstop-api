@@ -5,6 +5,7 @@ const getService = Joi.object().keys({
 });
 
 const createService = Joi.object().keys({
+    name: Joi.string().required(),
     image_path: Joi.string().allow(null, ''),
     price: Joi.string().required(),
     description: Joi.string().required(),
