@@ -2,7 +2,7 @@ const { Review } = require('../models');
 
 const getAllReview = async (req, res) => {
     let reviews;
-    if (req.query.userId)
+    if (req.query.reviewId)
         reviews = await Review.findByPk(req.query.reviewId)
     else
         reviews = await Review.findAll({});

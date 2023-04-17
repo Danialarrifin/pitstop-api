@@ -2,7 +2,7 @@ const { Transaction } = require('../models');
 
 const getAllTransaction = async (req, res) => {
     let transactions;
-    if (req.query.userId)
+    if (req.query.transactionId)
         transactions = await Transaction.findByPk(req.query.transactionId)
     else
         transactions = await Transaction.findAll({});

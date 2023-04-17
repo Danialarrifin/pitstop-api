@@ -2,7 +2,7 @@ const { Category, Service, } = require('../models');
 
 const getAllService = async (req, res) => {
     let services;
-    if (req.query.userId)
+    if (req.query.serviceId)
         services = await Service.findByPk(req.query.serviceId)
     else
         services = await Service.findAll({});

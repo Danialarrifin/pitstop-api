@@ -2,7 +2,7 @@ const { Address } = require('../models');
 
 const getAllAddress = async (req, res) => {
     let addresses;
-    if(req.query.userId)
+    if(req.query.addressId)
         addresses = await Address.findByPk(req.query.addressId)
     else
         addresses = await Address.findAll({});
