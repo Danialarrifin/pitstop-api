@@ -2,7 +2,7 @@ const { Item, Workshop, Address } = require('../models');
 
 const getAllItem = async (req, res) => {
     let items;
-    if (req.query.userId)
+    if (req.query.itemId)
         items = await Item.findByPk(req.query.itemId)
     else
         items = await Item.findAll({});
@@ -17,13 +17,27 @@ const getItem = async (req, res) => {
     const item = await Item.findByPk(req.query.itemId)
     return res.json(item);
 }
+
 const createItem = async (req, res) => {
-    const item = await Item.create({
-        name: req.body.name,
-        price: req.body.price,
-        workshop_id: req.body.workshop_id,
+    const { count, rows } = await Item.findAndCountAll({
+        where: {
+            name: req.body.name,
+            workshop_id: req.body.workshop_id,
+        }
     });
-    return res.json(item);
+    console.log("count", count)
+
+    if(count > 0){
+        // duplicate found, return error
+        return res.status(400).json({ message: 'items name exists' })
+    } else {
+        const item = await Item.create({
+            name: req.body.name,
+            price: req.body.price,
+            workshop_id: req.body.workshop_id,
+        });
+        return res.json(item);
+    }
 };
 
 const updateItem = async (req, res) => {
