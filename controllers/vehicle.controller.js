@@ -14,13 +14,25 @@ const getAllVehicle = async (req, res) => {
 };
 
 const createVehicle = async (req, res) => {
-    const vehicle = await Vehicle.create({
-        plate_num: req.body.plate_num,
-        model: req.body.model,
-        manufacturer: req.body.manufacturer,
-        image_path: req.body.image_path,
+    const { count, rows } = await Vehicle.findAndCountAll({
+        where: {
+            plate_num: req.body.plate_num,
+        }
     });
-    return res.json(vehicle);
+    console.log("count", count)
+    if(count>0) {
+  // duplicate found, return error
+  return res.status(400).json({ message: 'num plate exists' })
+    } else {
+        const vehicle = await Vehicle.create({
+            plate_num: req.body.plate_num,
+            model: req.body.model,
+            manufacturer: req.body.manufacturer,
+            image_path: req.body.image_path,
+        });
+        return res.json(vehicle);
+    }
+    
 };
 
 const updateVehicle = async (req, res) => {
