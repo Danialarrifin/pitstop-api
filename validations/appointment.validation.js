@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const getAppointment = Joi.object().keys({
-   appintmentId: Joi.string().required(),
+   appointmentId: Joi.string().required(),
 });
 
 const createAppointment = Joi.object().keys({
