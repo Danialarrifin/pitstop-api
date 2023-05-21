@@ -4,8 +4,11 @@ const jwt = require('../utils/jwt.util');
 module.exports = async (req, res, next) => {
 
     let token = req.headers.authorization;
+    console.log('headers', req.headers);
+    console.log('body', req.body);
     if (token && token.startsWith('Bearer ')) {
         token = token.slice(7, token.length);
+        console.log('token length', token)
     }
 
     if (token) {
