@@ -32,6 +32,7 @@ const createAppointment = async (req, res) => {
 };
 
 const updateAppointment = async (req, res) => {
+    console.log('req.query.appointmentId', req.query.appointmentId, req.body)
     const appointment = await Appointment.update({
         date: req.body.date,
         time_slot_id: req.body.time_slot_id,
