@@ -16,10 +16,13 @@ const register = async (req, res) => {
     }
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
+    console.log('role', req.body.role || 'customer');
+
     const user = await User.create({
         name: req.body.name,
         email: req.body.email,
-        password: hashedPassword
+        role: req.body.role || 'customer',
+        password: hashedPassword,
     });
     return res.json(user);
 }
