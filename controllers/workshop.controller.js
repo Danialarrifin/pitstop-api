@@ -65,17 +65,17 @@ const createWorkshop = async (req, res) => {
 //     return res.json({ message: 'workshops successfully added', workshop: });
 // };
 
-const updateWorkshop = async (req, res) => {
+const updateWorkshop= async (req, res) => {
     const workshop = await Workshop.update({
         name: req.body.name,
-        contact_num: req.body.contact_no,
-        address_id: address.id,
+        contact_num: req.body.contact_num,
+        address_id: Address.id,
     }, {
         where: {
             id: req.query.workshopId
         }
     });
-    return res.json({ message: 'workshop successfully updated' });
+    return res.json({ message: 'vehicle successfully updated' });
 };
 
 const deleteWorkshop= async (req, res) => {
