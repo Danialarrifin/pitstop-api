@@ -75,7 +75,7 @@ const updateWorkshop= async (req, res) => {
             id: req.query.workshopId
         }
     });
-    return res.json({ message: 'vehicle successfully updated' });
+    return res.json({ message: 'workshop successfully updated' });
 };
 
 const deleteWorkshop= async (req, res) => {
