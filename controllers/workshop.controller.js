@@ -1,13 +1,19 @@
 const { Workshop, Address } = require('../models');
+const sequelize = require('../config/connection');
 
 const getAllWorkshop = async (req, res) => {
-    let workshops;
-    if(req.query.workshopId)
-        workshops = await Workshop.findByPk(req.query.workshopId)
-    else
-        workshops = await Workshop.findAll({});
-
-    if(workshops)
+    let workshops, address, newList = [];
+    if(req.query.workshopId) {
+        workshops = await Workshop.findByPk(req.query.workshopId);
+        address = await Address.findByPk(workshops?.address_id);
+        workshops.address_id = address;
+    } else {
+        workshops = await sequelize.query('SELECT w.id, w.name, w.contact_num, w.road_assistance_enabled, w.created_at, w.updated_at, a.address, a.id AS address_id, a.state, a.postcode, a.city FROM workshops AS w LEFT JOIN addresses AS a ON a.id = w.address_id');
+        console.log('workshops', workshops[0])
+    }
+    if(workshops.length > 0)
+        return res.json(workshops[0]);
+    else if(workshops)
         return res.json(workshops);
     else
         return res.status(400).json({ message: 'workshops not found' })
@@ -66,13 +72,31 @@ const createWorkshop = async (req, res) => {
 // };
 
 const updateWorkshop= async (req, res) => {
-    const workshop = await Workshop.update({
-        name: req.body.name,
-        contact_num: req.body.contact_num,
-        address_id: Address.id,
+    const workshop = await Workshop.findByPk(req.query.WorkshopId);
+
+    console.log('workshop', workshop)
+
+    // update address
+    const address = await Address.update({
+        address: req.body.address,
+        postcode: req.body.postcode,
+        city: req.body.city,
+        state: req.body.state,
     }, {
         where: {
-            id: req.query.workshopId
+            id: workshop.address_id
+        }
+    });
+
+    // update workshop
+    const newworkshop = await Workshop.update({
+        name: req.body.name,
+        contact_num: req.body.contact_num,
+        road_assistance_enabled: req.body.road_assistance_enabled,
+      
+    }, {
+        where: {
+            id: workshop.id
         }
     });
     return res.json({ message: 'workshop successfully updated' });

@@ -8,7 +8,7 @@ const createWorkshop = Joi.object().keys({
     name: Joi.string().required(),
     contact_num: Joi.string().required(),
     // address_id: Joi.string().required(),
-    road_assiatance_enabled: Joi.string().allow(null, ''),
+    road_assistance_enabled: Joi.string().allow(null, ''),
     address: Joi.string().required(),
     state: Joi.string().required(),
     postcode: Joi.string().required(),
