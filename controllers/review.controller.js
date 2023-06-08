@@ -1,14 +1,22 @@
+const sequelize = require('../config/connection');
 const { Review } = require('../models');
 
 const getAllReview = async (req, res) => {
     let reviews;
     if (req.query.reviewId)
         reviews = await Review.findByPk(req.query.reviewId)
+    else if (req.query.workshopId) {
+        reviews = await sequelize.query(`SELECT * FROM reviews WHERE workshop_id = ${req.query.workshopId}`);
+    }
     else
         reviews = await Review.findAll({});
 
-    if (reviews)
-        return res.json(reviews);
+    if (reviews) {
+        if (reviews.length > 0)
+            return res.json(reviews[0]);
+        else
+            return res.json(reviews);
+    }
     else
         return res.status(400).json({ message: 'reviews not found' })
 }
@@ -42,7 +50,7 @@ const updateReview = async (req, res) => {
     return res.json({ message: 'review successfully updated' });
 };
 
-const deleteReview= async (req, res) => {
+const deleteReview = async (req, res) => {
     const review = await Review.destroy({
         where: {
             id: req.query.reviewId
