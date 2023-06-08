@@ -40,7 +40,8 @@ const login = async (req, res) => {
             return res.json({
                 access_token: token,
                 token_type: 'Bearer',
-                expires_in: jwtConfig.ttl
+                expires_in: jwtConfig.ttl,
+                role: user?.role
             });
         }
     }
