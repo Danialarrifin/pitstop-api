@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 
-const { User } = require('../models');
+const { User, Workshop, Address } = require('../models');
 const jwtConfig = require('../config/jwt.config');
 const cache = require('../utils/cache.util');
 const jwt = require('../utils/jwt.util');
@@ -16,15 +16,44 @@ const register = async (req, res) => {
     }
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-    console.log('role', req.body.role || 'customer');
+    if (req.query.isWorkshop) {
+        const user = await User.create({
+            name: req.body.name,
+            email: req.body.email,
+            role: req.body.role || 'workshop',
+            password: hashedPassword,
+        });
 
-    const user = await User.create({
-        name: req.body.name,
-        email: req.body.email,
-        role: req.body.role || 'customer',
-        password: hashedPassword,
-    });
-    return res.json(user);
+        // 1. create address
+        const address = await Address.create({
+            address: req.body.address,
+            state: req.body.state,
+            postcode: req.body.postcode,
+            city: req.body.city,
+            // latitude: req.body.latitude,
+            // longitude: req.body.longitude,
+        });
+
+        // 2. create workshop
+        const workshop = await Workshop.create({
+            name: req.body.workshop_name,
+            contact_num: req.body.contact_num,
+            address_id: address.id,
+        });
+
+        return res.json({ user, workshop });
+
+        return;
+    } else {
+        const user = await User.create({
+            name: req.body.name,
+            email: req.body.email,
+            role: req.body.role || 'customer',
+            password: hashedPassword,
+        });
+
+        return res.json(user);
+    }
 }
 
 const login = async (req, res) => {
@@ -41,7 +70,8 @@ const login = async (req, res) => {
                 access_token: token,
                 token_type: 'Bearer',
                 expires_in: jwtConfig.ttl,
-                role: user?.role
+                role: user?.role,
+                user: user,
             });
         }
     }
