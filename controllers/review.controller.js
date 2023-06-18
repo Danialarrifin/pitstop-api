@@ -9,7 +9,7 @@ const getAllReview = async (req, res) => {
         reviews = await sequelize.query(`SELECT * FROM reviews WHERE workshop_id = ${req.query.workshopId}`);
     }
     else
-        reviews = await Review.findAll({});
+    reviews = await sequelize.query(`SELECT * FROM reviews`);
 
     if (reviews) {
         if (reviews.length > 0)
