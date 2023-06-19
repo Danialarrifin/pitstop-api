@@ -17,6 +17,7 @@ const getAllAppointment = async (req, res) => {
             WHERE a.user_id = ${req.query.userId}
             AND a.workshop_id = ${req.query.workshopId}
         `);
+        console.log(appointments[0])
     }
     else if (req.query.userId) {
         appointments = await sequelize.query(`
