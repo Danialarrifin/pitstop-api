@@ -66,13 +66,30 @@ const login = async (req, res) => {
         const isMatched = await bcrypt.compare(req.body.password, user.password);
         if (isMatched) {
             const token = await jwt.createToken({ id: user.id, email: user.email });
-            return res.json({
-                access_token: token,
-                token_type: 'Bearer',
-                expires_in: jwtConfig.ttl,
-                role: user?.role,
-                user: user,
-            });
+            if (user.role == 'workshop') {
+                const workshop = await Workshop.findOne({
+                    where: {
+                        name: user.name
+                    }
+                })
+                return res.json({
+                    access_token: token,
+                    token_type: 'Bearer',
+                    expires_in: jwtConfig.ttl,
+                    role: user?.role,
+                    user: user,
+                    workshop: workshop
+                });
+            } else {
+                return res.json({
+                    access_token: token,
+                    token_type: 'Bearer',
+                    expires_in: jwtConfig.ttl,
+                    role: user?.role,
+                    user: user,
+                });
+            }
+
         }
     }
     return res.status(400).json({ message: 'Unauthorized' });
