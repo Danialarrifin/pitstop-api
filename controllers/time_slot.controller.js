@@ -4,10 +4,13 @@ const { Time_slot } = require('../models');
 const getAllTime_slot = async (req, res) => {
     console.log('req', req.query);
     let time_slots;
-    if (req.query.workshopId)
-        time_slots = await sequelize.query(`SELECT * FROM time_slots WHERE workshop_id = ${req.query.workshopId}`)
+        if (req.query.time_slotId)
+        time_slots = await Time_slot.findByPk(req.query.time_slotId)
+    else if (req.query.workshopId) {
+        time_slots = await sequelize.query(`SELECT * FROM time_slots WHERE workshop_id = ${req.query.workshopId}`);
+    }
     else
-        time_slots = await sequelize.query(`SELECT * FROM time_slots`)
+        time_slots = await sequelize.query(`SELECT * FROM time_slots`);
 
     if (time_slots) {
         if (time_slots.length > 0)
