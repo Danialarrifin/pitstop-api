@@ -1,14 +1,27 @@
 const { Op } = require('sequelize');
 const { Appointment, Time_slot } = require('../models');
+const sequelize = require('../config/connection');
 
 const getAllAppointment = async (req, res) => {
     let appointments;
     if (req.query.appointmentId)
         appointments = await Appointment.findByPk(req.query.appoinmentId)
-    else
-        appointments = await Appointment.findAll({});
+    else{
+        // appointments = await Appointment.findAll({});
+        appointments = await sequelize.query(`
+            SELECT a.id, a.date, a.status, a.time_slot_id, a.vehicle_id, a.service_id, a.workshop_id, a.user_id, u.name AS user_name, w.name AS workshop_name, s.name AS service_name, t.start_time, t.end_time, t.slot_limit, v.model, v.plate_num FROM appointments AS a 
+            LEFT JOIN time_slots AS t ON a.time_slot_id = t.id
+            LEFT JOIN vehicles AS v ON a.vehicle_id = v.id
+            LEFT JOIN services AS s ON a.service_id = s.id
+            LEFT JOIN workshops AS w ON a.workshop_id = w.id
+            LEFT JOIN users AS u ON a.user_id = u.id
+        `);
+        console.log('appointments', appointments[0])
+    }
 
-    if (appointments)
+    if(appointments.length > 0)
+        return res.json(appointments[0]);
+    else if(appointments)
         return res.json(appointments);
     else
         return res.status(400).json({ message: 'appointments not found' })
