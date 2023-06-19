@@ -9,6 +9,8 @@ const createAppointment = Joi.object().keys({
     time_slot_id: Joi.number().required(),
     vehicle_id: Joi.number().required(),
     service_id: Joi.number().required(),
+    user_id: Joi.number().required(),
+    workshop_id: Joi.number().required(),
     status: Joi.string().required(),
 
 

@@ -14,6 +14,12 @@ const Appointment = sequelize.define('appointments', {
     service_id: {
         type: DataTypes.INTEGER
     },
+    user_id: {
+        type: DataTypes.INTEGER
+    },
+     workshop_id: {
+        type: DataTypes.INTEGER
+    },
     status: {
         type: DataTypes.STRING
     },

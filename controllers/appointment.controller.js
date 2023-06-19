@@ -25,6 +25,8 @@ const createAppointment = async (req, res) => {
             time_slot_id: req.body.time_slot_id,
             vehicle_id: req.body.vehicle_id,
             service_id: req.body.service_id,
+            user_id: req.body.user_id,
+            workshop_id: req.body.workshop_id,
             status: req.body.status,
         });
         return res.json(appointment);
@@ -38,6 +40,8 @@ const updateAppointment = async (req, res) => {
         time_slot_id: req.body.time_slot_id,
         vehicle_id: req.body.vehicle_id,
         service_id: req.body.service_id,
+        user_id: req.body.user_id,
+        workshop_id: req.body.workshop_id,
         status: req.body.status,
     }, {
         where: {
