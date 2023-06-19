@@ -2,6 +2,9 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 const Vehicle = sequelize.define('vehicles', {
+    user_id: {
+        type: DataTypes.INTEGER
+    },
     plate_num: {
         type: DataTypes.STRING
     },

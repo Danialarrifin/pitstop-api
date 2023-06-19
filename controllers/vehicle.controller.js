@@ -25,6 +25,7 @@ const createVehicle = async (req, res) => {
   return res.status(400).json({ message: 'num plate exists' })
     } else {
         const vehicle = await Vehicle.create({
+            user_id: req.body.user_id,
             plate_num: req.body.plate_num,
             model: req.body.model,
             manufacturer: req.body.manufacturer,
@@ -37,6 +38,7 @@ const createVehicle = async (req, res) => {
 
 const updateVehicle = async (req, res) => {
     const vehicle = await Vehicle.update({
+        user_id: req.body.user_id,
         plate_num: req.body.plate_num,
         model: req.body.model,
         manufacturer: req.body.manufacturer,
