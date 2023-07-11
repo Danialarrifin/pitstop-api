@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Workshop , Vehicle, Appointment} = require('../models');
 
 const getAllUser = async (req, res) => {
     let users;
@@ -16,6 +16,21 @@ const getAllUser = async (req, res) => {
 const getUser = async (req, res) => {
     const user = await User.findByPk(req.query.userId)
     return res.json(user);
+}
+
+const getDashboardData = async (req, res) => {
+    const user = await User.count();
+    const workshops = await Workshop.count();
+    const vehicles = await Vehicle.count();
+    const appointments = await Appointment.count();
+
+
+    return res.json({
+        user,
+        workshops,
+        vehicles,
+        appointments,
+    });
 }
 
 const createUser = async (req, res) => {
@@ -67,4 +82,5 @@ module.exports = {
     getUser,
     updateUser,
     deleteUser,
+    getDashboardData,
 }

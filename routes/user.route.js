@@ -8,6 +8,7 @@ const validate = require('../utils/validator.util');
 const { userValidation } = require('../validations');
 
 router.get('/', AuthGuard, ErrorHandler(userController.getAllUser));
+router.get('/dashboard', AuthGuard, ErrorHandler(userController.getDashboardData));
 router.post('/update', AuthGuard, validate(userValidation.updateUser), ErrorHandler(userController.updateuser));
 router.get('/delete', AuthGuard, ErrorHandler(userController.deleteUser));
 module.exports = router;
